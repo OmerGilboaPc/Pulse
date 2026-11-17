@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>PULSE — Your World. One Feed.</title>
+    <meta name="description" content="Movies, TV, games, sports, technology and world news in one personalized feed — with a private watchlist and release calendar." />
+    <meta name="theme-color" content="#05070a" />
+    <meta name="color-scheme" content="dark light" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="PULSE" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <script>
+      // Apply the stored theme, accent and language before first paint (no flash).
+      (function () {
+        try {
+          var b = JSON.parse(localStorage.getItem('pulse:boot') || '{}');
+          var d = document.documentElement;
+          var light = b.theme === 'light' || (b.theme === 'system' && matchMedia('(prefers-color-scheme: light)').matches);
+          if (light) d.classList.add('light');
+          d.dataset.accent = b.accent || 'cyan';
+          if (b.language === 'he') { d.lang = 'he'; d.dir = 'rtl'; }
+        } catch (e) {}
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <noscript>PULSE needs JavaScript to run.</noscript>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
